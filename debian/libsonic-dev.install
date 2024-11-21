@@ -1,0 +1,3 @@
+usr/include/sonic.h
+usr/lib/*/libsonic.so
+usr/lib/*/libsonic.a

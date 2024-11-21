@@ -1,0 +1,36 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+include /usr/share/dpkg/architecture.mk
+
+%:
+	dh $@
+
+sonic/Sonic.class: Sonic.java
+	[ -L sonic ] || ln -s . sonic
+	javac -source 1.6 -target 1.6 $<
+
+sonic.jar: sonic/Sonic.class
+	jar -cf $@ $^
+
+override_dh_auto_build-indep: sonic.jar
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f Sonic.class
+	rm -f sonic.jar
+
+override_dh_auto_install-arch:
+	mkdir -p $(CURDIR)/debian/tmp
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp LIBDIR=/usr/lib/$(DEB_HOST_MULTIARCH)
+
+override_dh_auto_install-indep:
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/java
+	cp sonic.jar $(CURDIR)/debian/tmp/usr/share/java

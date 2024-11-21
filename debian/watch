@@ -1,0 +1,3 @@
+version=3
+opts=filenamemangle=s/release-/sonic-/ \
+  https://github.com/waywardgeek/sonic/tags .*/release-@ANY_VERSION@@ARCHIVE_EXT@

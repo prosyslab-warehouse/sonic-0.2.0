@@ -1,0 +1,43 @@
+https://github.com/waywardgeek/sonic/pull/25
+
+---
+ Makefile |   13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
+
+--- a/Makefile
++++ b/Makefile
+@@ -11,7 +11,8 @@ ifeq ($(UNAME), Darwin)
+   SONAME=install_name
+ endif
+ #CFLAGS=-Wall -g -ansi -fPIC -pthread
+-CFLAGS=-Wall -O3 -ansi -fPIC -pthread
++CFLAGS ?= -Wall -O3
++CFLAGS += -ansi -fPIC -pthread
+ LIB_TAG=0.2.0
+ CC=gcc
+ PREFIX=/usr
+@@ -20,19 +21,19 @@ LIBDIR=$(PREFIX)/lib
+ all: sonic libsonic.so.$(LIB_TAG) libsonic.a
+ 
+ sonic: wave.o main.o libsonic.so.$(LIB_TAG)
+-	$(CC) $(CFLAGS) -o sonic wave.o main.o libsonic.so.$(LIB_TAG)
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o sonic wave.o main.o libsonic.so.$(LIB_TAG)
+ 
+ sonic.o: sonic.c sonic.h
+-	$(CC) $(CFLAGS) -c sonic.c
++	$(CC) $(CPPFLAGS) $(CFLAGS) -c sonic.c
+ 
+ wave.o: wave.c wave.h
+-	$(CC) $(CFLAGS) -c wave.c
++	$(CC) $(CPPFLAGS) $(CFLAGS) -c wave.c
+ 
+ main.o: main.c sonic.h wave.h
+-	$(CC) $(CFLAGS) -c main.c
++	$(CC) $(CPPFLAGS) $(CFLAGS) -c main.c
+ 
+ libsonic.so.$(LIB_TAG): sonic.o
+-	$(CC) $(CFLAGS) -shared -Wl,-$(SONAME),libsonic.so.0 sonic.o -o libsonic.so.$(LIB_TAG)
++	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -shared -Wl,-$(SONAME),libsonic.so.0 sonic.o -o libsonic.so.$(LIB_TAG)
+ 	ln -sf libsonic.so.$(LIB_TAG) libsonic.so
+ 	ln -sf libsonic.so.$(LIB_TAG) libsonic.so.0
+ 

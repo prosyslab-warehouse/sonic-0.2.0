@@ -1,0 +1,2 @@
+Depends: espeak-ng, sonic
+Test-Command: espeak-ng "Hello, world!" --stdout > $AUTOPKGTEST_TMP/output.wav && sonic -p 2 -v 2 -s 2 $AUTOPKGTEST_TMP/output.wav $AUTOPKGTEST_TMP/output2.wav && sonic -c -p 2 -v 2 -s 2 $AUTOPKGTEST_TMP/output.wav $AUTOPKGTEST_TMP/output3.wav

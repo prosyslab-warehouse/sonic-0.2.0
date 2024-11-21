@@ -1,0 +1,63 @@
+Source: sonic
+Section: sound
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Accessibility Team <pkg-a11y-devel@alioth-lists.debian.net>
+Uploaders: Bill Cox <waywardgeek@gmail.com>, Samuel Thibault <sthibault@debian.org>
+Build-Depends: debhelper-compat (= 13)
+Build-Depends-Indep: default-jdk
+Rules-Requires-Root: no
+Standards-Version: 4.5.1
+Homepage: https://github.com/waywardgeek/sonic
+Vcs-Browser: https://salsa.debian.org/a11y-team/sonic
+Vcs-Git: https://salsa.debian.org/a11y-team/sonic.git
+
+Package: sonic
+Architecture: any
+Multi-Arch: foreign
+Depends: libsonic0 (= ${binary:Version}), ${shlibs:Depends}, ${misc:Depends}
+Description: Simple utility to speed up or slow down speech
+ Sonic is a very simple utility that reads and writes wav files,
+ and speeds them up or slows them down, with low distortion.
+ The key new feature in Sonic versus other libraries is very
+ high quality at speed up factors well over 2X.
+
+Package: libsonic0
+Architecture: any
+Section: libs
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Simple library to speed up or slow down speech
+ This package contains just the actual library.
+ libsonic is a very simple library for speeding up or slowing
+ down speech.  It has only basic dependencies, and is meant to
+ work on both Linux desktop machines and embedded systems.
+ The key new feature in Sonic versus other libraries is very
+ high quality at speed up factors well over 2X.
+
+Package: libsonic-dev
+Architecture: any
+Section: libdevel
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libsonic0 (= ${binary:Version}), ${misc:Depends}
+Suggests: sonic
+Description: Header file for linking to libsonic
+ This package contains just the sonic header file.
+ It is needed only by developers wishing to link to libsonic.
+ The key new feature in Sonic versus other libraries is very
+ high quality at speed up factors well over 2X.
+
+Package: libsonic-java
+Architecture: all
+Multi-Arch: foreign
+Section: java
+Depends: ${misc:Depends}
+Description: Simple library to speed up or slow down speech - Java bindings
+ This package contains just the Java library.
+ libsonic is a very simple library for speeding up or slowing
+ down speech.  It has only basic dependencies, and is meant to
+ work on both Linux desktop machines and embedded systems.
+ The key new feature in Sonic versus other libraries is very
+ high quality at speed up factors well over 2X.

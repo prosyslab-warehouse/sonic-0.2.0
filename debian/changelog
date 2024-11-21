@@ -1,0 +1,210 @@
+sonic (0.2.0-11build1) jammy; urgency=high
+
+  * No change rebuild for ppc64el baseline bump.
+
+ -- Julian Andres Klode <juliank@ubuntu.com>  Fri, 25 Mar 2022 10:51:38 +0100
+
+sonic (0.2.0-11) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * control: Set Rules-Requires-Root to no.
+  * gbp.conf: Drop parameters which are already default.
+  * watch: Update.
+
+  [ Debian Janitor ]
+  * Bump debhelper from old 12 to 13.
+  * Update standards version to 4.5.1, no changes needed.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 26 Oct 2021 00:38:41 +0200
+
+sonic (0.2.0-10) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Fix field name case in debian/tests/control (Test-command => Test-Command).
+
+  [ Samuel Thibault ]
+  * patches/flags: Fix passing hardening CFLAGS, CPPFLAGS, LDFLAGS.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 01 Jan 2021 16:57:26 +0100
+
+sonic (0.2.0-9) unstable; urgency=medium
+
+  [ Samuel Thibault ]
+  * rules: Rely on pre-initialized dpkg-architecture variables.
+
+  [ Debian Janitor ]
+  * Trim trailing whitespace.
+  * Bump debhelper from old 9 to 12.
+  * Set debhelper-compat version in Build-Depends.
+  * Set upstream metadata fields: Bug-Database, Bug-Submit, Repository,
+    Repository-Browse.
+
+  [ Samuel Thibault ]
+  * control: Update alioth list domain.
+  * control: Bump Standards-Version to 4.5.0 (no change)
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 01 Nov 2020 01:59:11 +0100
+
+sonic (0.2.0-8) unstable; urgency=medium
+
+  * control: Set Vcs-* to salsa.debian.org.
+  * control: Bump Standards-Version to 4.4.1 (no changes).
+  * watch: Generalize pattern.
+
+ -- Samuel Thibault <sthibault@debian.org>  Mon, 14 Oct 2019 00:37:11 +0200
+
+sonic (0.2.0-7) unstable; urgency=medium
+
+  * Bump Standards-Version to 4.2.0 (no changes).
+  * tests/control: Add autopkgtest.
+  * control: Mark libsonic-java Multi-Arch: foreign.
+
+ -- Samuel Thibault <sthibault@debian.org>  Tue, 23 Oct 2018 18:34:06 +0200
+
+sonic (0.2.0-6) unstable; urgency=medium
+
+  * rules: Bump java compatibility to 1.6.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sat, 17 Mar 2018 11:57:00 +0100
+
+sonic (0.2.0-5) unstable; urgency=medium
+
+  [ Helmut Grohne ]
+  * Fix FTCBFS: Do not build java stuff during arch-only build
+    (Closes: #841754).
+
+  [ Samuel Thibault ]
+  * Use canonical anonscm vcs URL.
+  * control: Update maintainer mailing list.
+  * control: Migrate priority to optional.
+  * control: Bump Standards-Version to 4.1.1.
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 22 Oct 2017 17:52:54 +0200
+
+sonic (0.2.0-4) unstable; urgency=medium
+
+  * compat: Bump to 9.
+  * rules: Clear. Set hardening.
+  * control: Drop hardening-wrapper dependency (Closes: #836655).
+  * control: Bump Standards-Version to 3.9.8 (no change).
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 04 Sep 2016 18:53:35 +0200
+
+sonic (0.2.0-3) unstable; urgency=medium
+
+  * Fix Homepage URL in copyright file too.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 21 Aug 2015 14:48:53 +0200
+
+sonic (0.2.0-2) unstable; urgency=medium
+
+  * Fix Homepage URL.
+
+ -- Samuel Thibault <sthibault@debian.org>  Fri, 21 Aug 2015 11:15:40 +0200
+
+sonic (0.2.0-1) unstable; urgency=low
+
+  New upstream release.
+
+  [ Samuel Thibault ]
+  * watch: Add github URL.
+  * rules:
+    - Set DEB_BUILD_HARDENING=1 to enable hardening.
+    - Add java build rules.
+    - Remove changelog, not shipped any more.
+  * control:
+    - Depend on hardening-check.
+    - Set maintainer to debian-accessibility team.
+    - Add myself as uploader.
+    - Bump Standards-Version to 3.9.6 (no changes).
+    - Add libsonic-java package.
+    - Add default-jdk dependency.
+  * sonic.docs: install sonic.odt
+  * patches/fix-ftbfs-with-ld-as-needed: Remove, merged upstream.
+  * patches/sonic-static-lib.patch: Remove, merged upstream.
+  * patches/add-libdir.patch: Refresh.
+
+  [ Bill Cox ]
+  * copyright: Update to Apache 2.0 licence
+
+ -- Samuel Thibault <sthibault@debian.org>  Sun, 03 May 2015 20:41:15 +0200
+
+sonic (0.1.17-1.1) unstable; urgency=low
+
+  [ Luke Yelavich ]
+  * Non-maintainer upload with maintainer's approval
+
+  [ Angel Abad ]
+  * debian/patches/fix-ftbfs-with-ld-as-needed:
+    - Fix ftbfs with ld --as-needed (LP: #803198, Closes: #632251)
+
+  [ Luke Yelavich ]
+  * Non-maintainer upload with maintainer's approval
+  * debian/patches/add-libdir.patch: Use $LIBDIr when installing the library
+    files, and allow an alternative LIBDIR to be specified on the make
+    command-line
+  * debian/control:
+    - Update homepage field (Closes: #644846)
+    - Add required fields for Multi-Arch support
+    - Fixes typo in libsonic0 package description (Closes: #644848)
+    - Bumped standards version to 3.9.2
+    - Point Vcs fields to a valid packaging location (Closes: #644847)
+  * debian/rules:
+    - Use the package's make install command, setting the LIBDIR to the
+      multi-arch lib path
+  * debian/*.install: Get package files from tmp directory
+  * debian/watch: Update URL
+  * debian/gbp.conf: Set some defaults for git packaging
+  * Build a static library (Closes: #632496)
+
+ -- Luke Yelavich <themuso@ubuntu.com>  Fri, 21 Oct 2011 13:04:03 +1100
+
+sonic (0.1.17-1) unstable; urgency=low
+
+  * Removed Sonic-NDK, which is a binary compiled for Android from the source
+    tar-ball.
+
+ -- Bill Cox <waywardgeek@gmail.com>  Tue, 19 Apr 2011 07:46:51 -0400
+
+sonic (0.1.16-1) unstable; urgency=low
+
+  * Added a bit more explanation about copyrights of various files.
+  * Dump git log to ChangeLog
+
+ -- Bill Cox <waywardgeek@gmail.com>  Sat, 16 Apr 2011 16:49:33 -0400
+
+sonic (0.1.15-1) unstable; urgency=low
+
+  * Updates to improve Debian packaging.
+
+ -- Bill Cox <waywardgeek@gmail.com>  Fri, 15 Apr 2011 12:32:30 -0400
+
+sonic (0.1.14-1) unstable; urgency=low
+
+  * Changed default install to /usr, rather than /usr/local
+
+ -- Bill Cox <waywardgeek@gmail.com>  Thu, 14 Apr 2011 14:37:47 -0400
+
+sonic (0.1.13-1) unstable; urgency=low
+
+  * Added rate control, and a new pitch control mode.
+
+ -- Bill Cox <waywardgeek@gmail.com>  Tue, 11 Jan 2011 07:44:38 -0500
+
+sonic (0.1.12-1) unstable; urgency=low
+
+  * Added web page, compile with -pthread.
+
+ -- Bill Cox <waywardgeek@gmail.com>  Sun, 09 Jan 2011 11:45:54 -0500
+
+sonic (0.1.11-1) unstable; urgency=low
+
+  * Removing .git and debian directory from orig.tar.gz file
+
+ -- Bill Cox <waywardgeek@gmail.com>  Mon, 20 Dec 2010 15:31:40 -0500
+
+sonic (0.1.10-1) unstable; urgency=low
+
+  * Initial packaging. Closes: #607477
+
+ -- Bill Cox <waywardgeek@gmail.com>  Fri, 17 Dec 2010 15:39:53 -0500
